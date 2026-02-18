@@ -1,0 +1,28 @@
+services:
+  api:
+    build:
+      context: .
+      dockerfile: api/Dockerfile
+    ports:
+      - "3000:3000"
+    networks:
+      - realtime-network
+    restart: always
+    environment:
+      - PORT=3000
+
+  web:
+    build:
+      context: .
+      dockerfile: web/Dockerfile
+    ports:
+      - "80:80"
+    depends_on:
+      - api
+    networks:
+      - realtime-network
+    restart: always
+
+networks:
+  realtime-network:
+    driver: bridge
