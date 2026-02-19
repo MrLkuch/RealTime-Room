@@ -1,8 +1,8 @@
 services:
   api:
     build:
-      context: .
-      dockerfile: api/Dockerfile
+      context: api/
+      dockerfile: Dockerfile
     ports:
       - "3000:3000"
     networks:
@@ -13,8 +13,8 @@ services:
 
   web:
     build:
-      context: .
-      dockerfile: web/Dockerfile
+      context: web/
+      dockerfile: Dockerfile
     ports:
       - "80:80"
     depends_on:
