@@ -1,12 +1,21 @@
 services:
-  - type: web
+  - repo: https://github.com/MrLkuch/RealTime-Room
+  - type: api
     name: realtime-api
     env: docker
     dockerfilePath: ./api/Dockerfile
     healthCheckPath: /health
+    plan: free
+    autoDeploy: true
+    branch: main
 
-  - type: static
+  - repo: https://github.com/MrLkuch/RealTime-Room
+  - type: web
     name: realtime-web
     rootDir: web
     buildCommand: pnpm install && pnpm run build
     staticPublishPath: dist
+    dockerfilePath: ./web/Dockerfile
+    plan: free
+    autoDeploy: true
+    branch: main
