@@ -3,7 +3,7 @@ services:
     repo: https://github.com/MrLkuch/RealTime-Room
     name: realtime-api
     runtime: docker
-    dockerfilePath: ./api/Dockerfile
+    dockerfilePath: api/Dockerfile
     healthCheckPath: /health
     plan: free
     autoDeploy: true
@@ -19,7 +19,7 @@ services:
     name: realtime-web
     runtime: docker
     buildCommand: pnpm install && pnpm run build
-    dockerfilePath: ./web/Dockerfile
+    dockerfilePath: web/Dockerfile
     plan: free
     autoDeploy: true
     branch: main
