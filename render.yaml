@@ -2,20 +2,27 @@ services:
   - type: web
     repo: https://github.com/MrLkuch/RealTime-Room
     name: realtime-api
-    env: docker
+    runtime: docker
     dockerfilePath: ./api/Dockerfile
     healthCheckPath: /health
     plan: free
     autoDeploy: true
     branch: main
+    envVars:
+    - key: NODE_ENV
+      value: production
+    - key: PORT
+      value: 3000
 
   - type: web
     repo: https://github.com/MrLkuch/RealTime-Room
     name: realtime-web
+    runtime: docker
     rootDir: web
     buildCommand: pnpm install && pnpm run build
-    staticPublishPath: dist
     dockerfilePath: ./web/Dockerfile
     plan: free
     autoDeploy: true
     branch: main
+    envVars:
+    - key: API_URL
