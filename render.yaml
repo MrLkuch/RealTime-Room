@@ -1,6 +1,6 @@
 services:
-  - repo: https://github.com/MrLkuch/RealTime-Room
   - type: api
+    repo: https://github.com/MrLkuch/RealTime-Room
     name: realtime-api
     env: docker
     dockerfilePath: ./api/Dockerfile
@@ -9,8 +9,8 @@ services:
     autoDeploy: true
     branch: main
 
-  - repo: https://github.com/MrLkuch/RealTime-Room
   - type: web
+    repo: https://github.com/MrLkuch/RealTime-Room
     name: realtime-web
     rootDir: web
     buildCommand: pnpm install && pnpm run build
