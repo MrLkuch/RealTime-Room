@@ -1,0 +1,12 @@
+services:
+  - type: web
+    name: realtime-api
+    env: docker
+    dockerfilePath: ./api/Dockerfile
+    healthCheckPath: /health
+
+  - type: static
+    name: realtime-web
+    rootDir: web
+    buildCommand: pnpm install && pnpm run build
+    staticPublishPath: dist
