@@ -1,5 +1,5 @@
 services:
-  - type: api
+  - type: web
     repo: https://github.com/MrLkuch/RealTime-Room
     name: realtime-api
     env: docker
