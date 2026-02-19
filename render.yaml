@@ -24,5 +24,3 @@ services:
     plan: free
     autoDeploy: true
     branch: main
-    envVars:
-    - key: API_URL
