@@ -18,7 +18,6 @@ services:
     repo: https://github.com/MrLkuch/RealTime-Room
     name: realtime-web
     runtime: docker
-    rootDir: web
     buildCommand: pnpm install && pnpm run build
     dockerfilePath: ./web/Dockerfile
     plan: free
