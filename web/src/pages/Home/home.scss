@@ -1,0 +1,104 @@
+@use "../../styles/variables" as *;
+
+.home {
+  padding: 60px 8%;
+}
+
+.hero {
+  position: relative;
+  margin-bottom: 60px;
+
+  .status {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: white;
+    padding: 8px 16px;
+    border-radius: 50px;
+    box-shadow: $soft-shadow;
+    font-size: 14px;
+
+    .dot {
+      width: 8px;
+      height: 8px;
+      background: red;
+      border-radius: 50%;
+      display: inline-block;
+      margin-right: 6px;
+    }
+  }
+
+  h1 {
+    font-size: 64px;
+    font-weight: 800;
+
+    span {
+      color: #7a5c3e;
+    }
+  }
+
+  .subtitle {
+    margin-top: 12px;
+    color: $muted;
+  }
+}
+
+.home-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+}
+
+.visual-card {
+  background: linear-gradient(135deg, #3c2d29, #9e544a);
+  position: relative;
+  overflow: hidden;
+
+  .vinyl {
+    width: 180px;
+    height: 180px;
+    background: black;
+    border-radius: 50%;
+    position: absolute;
+    top: 60px;
+    left: 60px;
+  }
+
+  .second {
+    bottom: 40px;
+    right: 60px;
+    top: auto;
+    left: auto;
+  }
+}
+.floating-entry {
+    position: absolute;
+    bottom: 20%;
+    left: 55%;
+    transform: translateX(-50%);
+    background: linear-gradient(135deg, #f4ebe4, #e3d1c7);
+    padding: 40px;
+    border-radius: 24px;
+    width: 520px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
+    
+    .input-row {
+      display: flex;
+      gap: 16px;
+      margin-top: 20px;
+    }
+}
+
+footer {
+  margin-top: 140px;
+  padding: 40px 8%;
+  font-size: 14px;
+  color: $muted;
+
+  a {
+    color: inherit;
+    font-weight: 600;
+    text-decoration: none;
+  }
+}
+

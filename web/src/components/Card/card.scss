@@ -1,0 +1,22 @@
+@use "../../styles/variables" as *;
+
+.card {
+  background: $card-bg;
+  border-radius: $radius-lg;
+  padding: 40px;
+  box-shadow: $soft-shadow;
+
+    .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+
+        span {
+            background: #e7e4e1;
+            padding: 8px 14px;
+            border-radius: 30px;
+            font-size: 13px;
+            font-weight: 500;
+        }
+    }
+}

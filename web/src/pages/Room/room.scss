@@ -1,0 +1,34 @@
+@use "../../styles/variables" as *;
+
+.room {
+  padding: 60px 8%;
+}
+
+.room-grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 40px;
+}
+
+.video-placeholder {
+  background: #111;
+  height: 320px;
+  border-radius: $radius-md;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  margin: 20px 0;
+}
+
+.chat-box {
+  background: #e9e6e3;
+  height: 360px;
+  border-radius: $radius-md;
+  margin: 20px 0;
+}
+
+.input-row {
+  display: flex;
+  gap: 14px;
+}
