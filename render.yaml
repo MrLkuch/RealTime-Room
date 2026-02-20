@@ -22,3 +22,8 @@ services:
     branch: main
     plan: free
     autoDeploy: true
+    envVars:
+      - key: PORT
+        value: 3000
+      - key: VITE_API_URL
+        value: https://realtime-api-bt0a.onrender.com
