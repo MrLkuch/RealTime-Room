@@ -1,9 +1,19 @@
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "./home.scss";
 import Card from "../../components/Card/Card";
 import Button from "../../components/Button/Button";
 import Input from "../../components/Input/Input";
 
-const Home = () => {
+function Home() {
+  const [username, setUsername] = useState("");
+  const navigate = useNavigate();
+
+  const handleJoin = () => {
+    if (!username) return;
+    navigate("/room", { state: { username } });
+  };
+
   return (
     <div className="home">
 
@@ -30,7 +40,7 @@ const Home = () => {
             Avant d’entrer, choisis simplement un pseudo.
             Ensuite, tu peux lancer ton salon ou rejoindre une room existante.
           </p>
-          <div class="tags">
+          <div className="tags">
             <span>Sans compte</span>
             <span>Temps réel</span>
             <span>Playlist partagée</span>
@@ -50,8 +60,12 @@ const Home = () => {
         <h3>Choisis ton pseudo pour continuer.</h3>
 
         <div className="input-row">
-          <Input placeholder="ex: Aurora" />
-          <Button>Continuer</Button>
+          <Input placeholder="ex: Aurora"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+          />
+          
+          <Button onClick={handleJoin} >Continuer</Button>
         </div>
       </div>
 
