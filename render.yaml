@@ -11,8 +11,6 @@ services:
     envVars:
       - key: NODE_ENV
         value: production
-      - key: PORT
-        value: 3000
 
   - type: web
     name: realtime-web
@@ -23,7 +21,5 @@ services:
     plan: free
     autoDeploy: true
     envVars:
-      - key: PORT
-        value: 80
       - key: VITE_API_URL
         value: https://realtime-api-bt0a.onrender.com
