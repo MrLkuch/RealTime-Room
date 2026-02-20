@@ -1,16 +1,79 @@
-# React + Vite
+# RealTime-Room - Frontend (web)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Application React avec Vite pour l'interface du projet RealTime-Room.
 
-Currently, two official plugins are available:
+## 🛠️ Installation
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### Prérequis
+- Node.js >= 18
+- pnpm (recommandé)
 
-## React Compiler
+### Installation des dépendances
+```bash
+pnpm install
+```
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## 🚀 Lancement
 
-## Expanding the ESLint configuration
+### Développement
+```bash
+pnpm dev
+```
+Accès sur [http://localhost:5173](http://localhost:5173)
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### Production
+#### Build
+```bash
+pnpm build
+```
+#### Preview
+```bash
+pnpm preview
+```
+#### Docker
+```bash
+# Build et run via Docker
+cd ..
+docker compose up --build
+```
+
+## ⚙️ Variables d'environnement
+- Pas de .env par défaut, mais Vite supporte les fichiers `.env` pour injecter des variables (voir [Vite docs](https://vitejs.dev/guide/env-and-mode.html)).
+- Exemple :
+```
+VITE_API_URL=http://localhost:3000
+```
+
+## 🏗️ Architecture
+```
+web/
+├── src/
+│   ├── assets/         # Images, icônes
+│   ├── components/     # Composants UI (Button, Card, Input)
+│   ├── pages/          # Pages (Home, Room)
+│   ├── styles/         # SCSS global
+│   ├── App.jsx         # Point d'entrée React
+│   └── main.jsx        # Bootstrap React/Vite
+├── public/             # Fichiers statiques
+├── Dockerfile          # Build frontend + Nginx
+├── vite.config.js      # Config Vite
+└── nginx.conf          # Config Nginx
+```
+
+## 🧩 Technologies
+- React 19
+- Vite
+- Sass
+- Socket.io-client
+- Nginx (prod)
+
+## 📦 Lint & format
+```bash
+pnpm lint
+```
+
+## 🔗 API
+L'URL de l'API est configurable via `VITE_API_URL`.
+
+---
+Pour toute question, voir le README du backend ou contacter l'équipe.

@@ -24,6 +24,6 @@ services:
     autoDeploy: true
     envVars:
       - key: PORT
-        value: 3000
+        value: 80
       - key: VITE_API_URL
         value: https://realtime-api-bt0a.onrender.com
