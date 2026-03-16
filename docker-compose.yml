@@ -22,6 +22,8 @@ services:
     networks:
       - realtime-network
     restart: always
+    environment:
+      - VITE_API_URL=/api
 
 networks:
   realtime-network:
