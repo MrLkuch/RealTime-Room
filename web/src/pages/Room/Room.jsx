@@ -6,7 +6,7 @@ import Card from "../../components/Card/Card";
 import Button from "../../components/Button/Button";
 import Input from "../../components/Input/Input";
 
-const SOCKET_URL = import.meta.env.VITE_API_URL || 'http://localhost:3000/';
+const SOCKET_URL = import.meta.env.VITE_API_URL;
 const Room = () => {
   const location = useLocation();
   const navigate = useNavigate();
