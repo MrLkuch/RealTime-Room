@@ -6,7 +6,8 @@ import Card from "../../components/Card/Card";
 import Button from "../../components/Button/Button";
 import Input from "../../components/Input/Input";
 
-const SOCKET_URL = import.meta.env.VITE_API_URL;
+// const SOCKET_URL = import.meta.env.VITE_API_URL;
+const SOCKET_URL = 'https://realtime-api-bt0a.onrender.com';
 const Room = () => {
   const location = useLocation();
   const navigate = useNavigate();
