@@ -1,20 +1,20 @@
 import { describe, it, expect } from "vitest";
 import { moveSnake } from "./snakeLogic";
 
-describe("moveSnake", () => {
-  it("move vers la droite", () => {
-    const snake = [{ x: 5, y: 5 }];
+describe("wrap", () => {
+  it("sort à gauche et revient à droite", () => {
+    const snake = [{ x: 0, y: 5 }];
 
-    const result = moveSnake(snake, "ArrowRight");
+    const result = moveSnake(snake, "ArrowLeft");
 
-    expect(result[0]).toEqual({ x: 6, y: 5 });
+    expect(result[0]).toEqual({ x: 19, y: 5 });
   });
 
-  it("move vers le haut", () => {
-    const snake = [{ x: 5, y: 5 }];
+  it("sort en haut et revient en bas", () => {
+    const snake = [{ x: 5, y: 0 }];
 
     const result = moveSnake(snake, "ArrowUp");
 
-    expect(result[0]).toEqual({ x: 5, y: 4 });
+    expect(result[0]).toEqual({ x: 5, y: 19 });
   });
 });

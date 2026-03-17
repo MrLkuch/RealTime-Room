@@ -3,25 +3,28 @@ export const GRID_SIZE = 20;
 export function moveSnake(snake, direction) {
   const head = snake[0];
 
-  const moves = {
-    ArrowUp: { x: head.x, y: head.y - 1 },
-    ArrowDown: { x: head.x, y: head.y + 1 },
-    ArrowLeft: { x: head.x - 1, y: head.y },
-    ArrowRight: { x: head.x + 1, y: head.y },
-  };
+  let newHead;
 
-  const newHead = moves[direction];
+  switch (direction) {
+    case "ArrowUp":
+      newHead = { x: head.x, y: head.y - 1 };
+      break;
+    case "ArrowDown":
+      newHead = { x: head.x, y: head.y + 1 };
+      break;
+    case "ArrowLeft":
+      newHead = { x: head.x - 1, y: head.y };
+      break;
+    case "ArrowRight":
+      newHead = { x: head.x + 1, y: head.y };
+      break;
+    default:
+      newHead = head;
+  }
 
-  const newSnake = [newHead, ...snake.slice(0, -1)];
+  // 🔥 WRAP (passer de l'autre côté)
+  newHead.x = (newHead.x + GRID_SIZE) % GRID_SIZE;
+  newHead.y = (newHead.y + GRID_SIZE) % GRID_SIZE;
 
-  return newSnake;
-}
-
-export function isCollision(head) {
-  return (
-    head.x < 0 ||
-    head.y < 0 ||
-    head.x >= GRID_SIZE ||
-    head.y >= GRID_SIZE
-  );
+  return [newHead, ...snake.slice(0, -1)];
 }

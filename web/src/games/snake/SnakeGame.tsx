@@ -17,12 +17,12 @@ const SnakeGame = () => {
   }, []);
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      setSnake((prev) => moveSnake(prev, direction));
-    }, 200);
+  const interval = setInterval(() => {
+    setSnake((prev) => moveSnake(prev, direction));
+  }, 200);
 
-    return () => clearInterval(interval);
-  }, [direction]);
+  return () => clearInterval(interval);
+}, [direction]);
 
   return (
     <div className="snake-board">
