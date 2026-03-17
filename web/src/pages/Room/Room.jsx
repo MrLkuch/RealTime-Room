@@ -5,6 +5,7 @@ import "./room.scss";
 import Card from "../../components/Card/Card";
 import Button from "../../components/Button/Button";
 import Input from "../../components/Input/Input";
+import SnakeGame from "../../games/snake/SnakeGame";
 
 // const SOCKET_URL = import.meta.env.VITE_API_URL;
 const SOCKET_URL = 'https://realtime-api-bt0a.onrender.com';
@@ -84,23 +85,7 @@ const Room = () => {
       <div className="room-grid">
 
         <Card>
-          <div className="card-header">
-            <div>
-              <h2>Scène YouTube</h2>
-              <p>Partage un lien pour synchroniser l’écoute.</p>
-            </div>
-            <Button variant="soft">Synchroniser</Button>
-          </div>
-
-          <div className="video-placeholder">
-            Colle un lien YouTube pour lancer la musique en live.
-          </div>
-
-          <div className="input-row">
-            <Input placeholder="https://youtu.be/..." />
-            <Button>Partager</Button>
-          </div>
-
+          <SnakeGame />
         </Card>
 
         <Card>
