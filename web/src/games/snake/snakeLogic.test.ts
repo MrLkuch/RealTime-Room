@@ -29,4 +29,15 @@ describe("generateFood", () => {
     expect(food.x).toBeLessThan(GRID_SIZE);
     expect(food.y).toBeLessThan(GRID_SIZE);
   });
+
+});
+
+it("ne génère pas une pomme sur le snake", () => {
+  const snake = [{ x: 5, y: 5 }];
+
+  for (let i = 0; i < 20; i++) {
+    const food = generateFood(snake);
+
+    expect(food).not.toEqual({ x: 5, y: 5 });
+  }
 });

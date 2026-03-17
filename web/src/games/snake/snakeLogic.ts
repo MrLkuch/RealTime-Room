@@ -29,9 +29,17 @@ export function moveSnake(snake, direction) {
   return [newHead, ...snake.slice(0, -1)];
 }
 
-export function generateFood() {
-  return {
-    x: Math.floor(Math.random() * GRID_SIZE),
-    y: Math.floor(Math.random() * GRID_SIZE),
-  };
+export function generateFood(snake) {
+  let food;
+
+  do {
+    food = {
+      x: Math.floor(Math.random() * GRID_SIZE),
+      y: Math.floor(Math.random() * GRID_SIZE),
+    };
+  } while (
+    snake.some((segment) => segment.x === food.x && segment.y === food.y)
+  );
+
+  return food;
 }

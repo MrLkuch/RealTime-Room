@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
-import { moveSnake } from "./snakeLogic";
+import { moveSnake, generateFood } from "./snakeLogic";
 import "./snake.scss";
 
 const SnakeGame = () => {
   const [snake, setSnake] = useState([{ x: 10, y: 10 }]);
   const [direction, setDirection] = useState("ArrowRight");
+  const [food, setFood] = useState(() => generateFood([{ x: 10, y: 10 }]));
 
   useEffect(() => {
     const handleKey = (e) => {
@@ -36,6 +37,13 @@ const SnakeGame = () => {
           }}
         />
       ))}
+      <div
+        className="food"
+        style={{
+          left: `${food.x * 20}px`,
+          top: `${food.y * 20}px`,
+        }}
+      />
     </div>
   );
 };
