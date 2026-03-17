@@ -28,3 +28,10 @@ export function moveSnake(snake, direction) {
 
   return [newHead, ...snake.slice(0, -1)];
 }
+
+export function generateFood() {
+  return {
+    x: Math.floor(Math.random() * GRID_SIZE),
+    y: Math.floor(Math.random() * GRID_SIZE),
+  };
+}
