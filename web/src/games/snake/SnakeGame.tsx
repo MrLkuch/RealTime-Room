@@ -5,6 +5,7 @@ import "./snake.scss";
 const SnakeGame = () => {
   const [snake, setSnake] = useState([{ x: 10, y: 10 }]);
   const [direction, setDirection] = useState("ArrowRight");
+  const [nextDirection, setNextDirection] = useState("ArrowRight");
   const [food, setFood] = useState(() => generateFood([{ x: 10, y: 10 }]));
   const [gameOver, setGameOver] = useState(false);
   const [gameState, setGameState] = useState("start"); 
@@ -29,29 +30,41 @@ const SnakeGame = () => {
 
   useEffect(() => {
     const handleKey = (e) => {
-      setDirection(e.key);
+      const opposite = {
+        ArrowUp: "ArrowDown",
+        ArrowDown: "ArrowUp",
+        ArrowLeft: "ArrowRight",
+        ArrowRight: "ArrowLeft",
+      };
+
+      setNextDirection((prev) => {
+        // ❌ bloque demi-tour basé sur la direction ACTUELLE
+        if (opposite[direction] === e.key) return prev;
+
+        return e.key;
+      });
     };
 
     window.addEventListener("keydown", handleKey);
-
     return () => window.removeEventListener("keydown", handleKey);
-  }, []);
+  }, [direction]);
 
   useEffect(() => {
     if (gameState !== "playing") return;
 
     const interval = setInterval(() => {
       setSnake((prev) => {
-        const result = eatFood(prev, food, direction);
+        // 🔥 appliquer la direction buffered
+        setDirection(nextDirection);
+
+        const result = eatFood(prev, food, nextDirection);
         const newSnake = result.snake;
 
-        // 💀 collision avec soi-même
         if (isSelfCollision(newSnake)) {
           setGameState("gameover");
           return prev;
         }
 
-        // 🍎 manger
         if (result.ate) {
           setFood(generateFood(newSnake));
         }
@@ -61,7 +74,7 @@ const SnakeGame = () => {
     }, 200);
 
     return () => clearInterval(interval);
-  }, [direction, food, gameState]);
+  }, [nextDirection, food, gameState]);
 
 
   return (
