@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
-import { moveSnake, generateFood, eatFood } from "./snakeLogic";
+import { moveSnake, generateFood, eatFood, isSelfCollision } from "./snakeLogic";
 import "./snake.scss";
 
 const SnakeGame = () => {
   const [snake, setSnake] = useState([{ x: 10, y: 10 }]);
   const [direction, setDirection] = useState("ArrowRight");
   const [food, setFood] = useState(() => generateFood([{ x: 10, y: 10 }]));
+  const [gameOver, setGameOver] = useState(false);
 
   useEffect(() => {
     const handleKey = (e) => {
@@ -18,20 +19,30 @@ const SnakeGame = () => {
   }, []);
 
   useEffect(() => {
+    if (gameOver) return;
+
     const interval = setInterval(() => {
       setSnake((prev) => {
         const result = eatFood(prev, food, direction);
+        const newSnake = result.snake;
 
-        if (result.ate) {
-          setFood(generateFood(result.snake));
+        // 💀 collision avec soi-même
+        if (isSelfCollision(newSnake)) {
+          setGameOver(true);
+          return prev;
         }
 
-        return result.snake;
+        // 🍎 manger
+        if (result.ate) {
+          setFood(generateFood(newSnake));
+        }
+
+        return newSnake;
       });
     }, 200);
 
     return () => clearInterval(interval);
-  }, [direction, food]);
+  }, [direction, food, gameOver]);
 
 
   return (

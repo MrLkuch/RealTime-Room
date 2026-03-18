@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { moveSnake, GRID_SIZE, generateFood, eatFood  } from "./snakeLogic";
+import { moveSnake, GRID_SIZE, generateFood, eatFood, isSelfCollision } from "./snakeLogic";
 
 describe("wrap", () => {
   it("sort à gauche et revient à droite", () => {
@@ -50,4 +50,27 @@ it("le snake grandit quand il mange", () => {
   const result = eatFood(snake, food, "ArrowRight");
 
   expect(result.snake.length).toBe(2);
+});
+
+describe("isSelfCollision", () => {
+  it("retourne true si la tête touche le corps", () => {
+    const snake = [
+      { x: 5, y: 5 }, // tête
+      { x: 5, y: 6 },
+      { x: 5, y: 7 },
+      { x: 5, y: 5 }, // collision
+    ];
+
+    expect(isSelfCollision(snake)).toBe(true);
+  });
+
+  it("retourne false si pas de collision", () => {
+    const snake = [
+      { x: 5, y: 5 },
+      { x: 5, y: 6 },
+      { x: 5, y: 7 },
+    ];
+
+    expect(isSelfCollision(snake)).toBe(false);
+  });
 });

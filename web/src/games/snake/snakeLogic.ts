@@ -63,3 +63,11 @@ export function eatFood(snake, food, direction) {
     ate: false,
   };
 }
+
+export function isSelfCollision(snake) {
+  const [head, ...body] = snake;
+
+  return body.some(
+    (segment) => segment.x === head.x && segment.y === head.y
+  );
+}
