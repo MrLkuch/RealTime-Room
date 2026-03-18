@@ -7,6 +7,25 @@ const SnakeGame = () => {
   const [direction, setDirection] = useState("ArrowRight");
   const [food, setFood] = useState(() => generateFood([{ x: 10, y: 10 }]));
   const [gameOver, setGameOver] = useState(false);
+  const [gameState, setGameState] = useState("start"); 
+
+  const startGame = () => {
+    const initialSnake = [{ x: 10, y: 10 }];
+
+    setSnake(initialSnake);
+    setDirection("ArrowRight");
+    setFood(generateFood(initialSnake));
+    setGameState("playing");
+  };
+
+  const restartGame = () => {
+    const initialSnake = [{ x: 10, y: 10 }];
+
+    setSnake(initialSnake);
+    setDirection("ArrowRight");
+    setFood(generateFood(initialSnake));
+    setGameState("playing");
+  };
 
   useEffect(() => {
     const handleKey = (e) => {
@@ -19,7 +38,7 @@ const SnakeGame = () => {
   }, []);
 
   useEffect(() => {
-    if (gameOver) return;
+    if (gameState !== "playing") return;
 
     const interval = setInterval(() => {
       setSnake((prev) => {
@@ -28,7 +47,7 @@ const SnakeGame = () => {
 
         // 💀 collision avec soi-même
         if (isSelfCollision(newSnake)) {
-          setGameOver(true);
+          setGameState("gameover");
           return prev;
         }
 
@@ -42,28 +61,53 @@ const SnakeGame = () => {
     }, 200);
 
     return () => clearInterval(interval);
-  }, [direction, food, gameOver]);
+  }, [direction, food, gameState]);
 
 
   return (
-    <div className="snake-board">
-      {snake.map((segment, i) => (
+    <div className="snake-container">
+
+      {/* 🟢 START SCREEN */}
+      {gameState === "start" && (
+        <div className="overlay">
+          <h2>Snake Game 🐍</h2>
+          <button onClick={startGame}>Start</button>
+        </div>
+      )}
+
+      {/* 💀 GAME OVER */}
+      {gameState === "gameover" && (
+        <div className="overlay">
+          <h2>Game Over 💀</h2>
+          <button onClick={restartGame}>Restart</button>
+        </div>
+      )}
+
+      {/* 🎮 GAME */}
+      <div className="snake-board">
+
+        {/* 🍎 FOOD */}
         <div
-          key={i}
-          className="snake"
+          className="food"
           style={{
-            left: `${segment.x * 20}px`,
-            top: `${segment.y * 20}px`,
+            left: `${food.x * 20}px`,
+            top: `${food.y * 20}px`,
           }}
         />
-      ))}
-      <div
-        className="food"
-        style={{
-          left: `${food.x * 20}px`,
-          top: `${food.y * 20}px`,
-        }}
-      />
+
+        {/* 🐍 SNAKE */}
+        {snake.map((segment, i) => (
+          <div
+            key={i}
+            className="snake"
+            style={{
+              left: `${segment.x * 20}px`,
+              top: `${segment.y * 20}px`,
+            }}
+          />
+        ))}
+
+      </div>
     </div>
   );
 };

@@ -21,3 +21,21 @@
   background: red;
   border-radius: 50%;
 }
+
+.snake-container {
+  position: relative;
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.7);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  color: white;
+  z-index: 10;
+}
