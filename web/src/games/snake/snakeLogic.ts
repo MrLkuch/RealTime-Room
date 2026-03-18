@@ -43,3 +43,23 @@ export function generateFood(snake) {
 
   return food;
 }
+
+export function eatFood(snake, food, direction) {
+  const newSnake = moveSnake(snake, direction);
+  const head = newSnake[0];
+
+  const hasEaten = head.x === food.x && head.y === food.y;
+
+  if (hasEaten) {
+    // on rajoute un segment (on garde toute la queue)
+    return {
+      snake: [head, ...snake],
+      ate: true,
+    };
+  }
+
+  return {
+    snake: newSnake,
+    ate: false,
+  };
+}

@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { moveSnake, GRID_SIZE, generateFood } from "./snakeLogic";
+import { moveSnake, GRID_SIZE, generateFood, eatFood  } from "./snakeLogic";
 
 describe("wrap", () => {
   it("sort à gauche et revient à droite", () => {
@@ -40,4 +40,14 @@ it("ne génère pas une pomme sur le snake", () => {
 
     expect(food).not.toEqual({ x: 5, y: 5 });
   }
+});
+
+
+it("le snake grandit quand il mange", () => {
+  const snake = [{ x: 5, y: 5 }];
+  const food = { x: 6, y: 5 };
+
+  const result = eatFood(snake, food, "ArrowRight");
+
+  expect(result.snake.length).toBe(2);
 });

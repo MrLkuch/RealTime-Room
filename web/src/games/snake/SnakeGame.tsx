@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { moveSnake, generateFood } from "./snakeLogic";
+import { moveSnake, generateFood, eatFood } from "./snakeLogic";
 import "./snake.scss";
 
 const SnakeGame = () => {
@@ -18,12 +18,21 @@ const SnakeGame = () => {
   }, []);
 
   useEffect(() => {
-  const interval = setInterval(() => {
-    setSnake((prev) => moveSnake(prev, direction));
-  }, 200);
+    const interval = setInterval(() => {
+      setSnake((prev) => {
+        const result = eatFood(prev, food, direction);
 
-  return () => clearInterval(interval);
-}, [direction]);
+        if (result.ate) {
+          setFood(generateFood(result.snake));
+        }
+
+        return result.snake;
+      });
+    }, 200);
+
+    return () => clearInterval(interval);
+  }, [direction, food]);
+
 
   return (
     <div className="snake-board">
