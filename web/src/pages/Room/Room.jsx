@@ -8,7 +8,9 @@ import Input from "../../components/Input/Input";
 import SnakeGame from "../../games/snake/SnakeGame";
 
 // const SOCKET_URL = import.meta.env.VITE_API_URL;
-const SOCKET_URL = 'https://realtime-api-bt0a.onrender.com';
+// const SOCKET_URL = 'https://realtime-api-bt0a.onrender.com';
+const SOCKET_URL = 'http://localhost:3000/';
+
 const Room = () => {
   const location = useLocation();
   const navigate = useNavigate();
@@ -85,7 +87,7 @@ const Room = () => {
       <div className="room-grid">
 
         <Card>
-          <SnakeGame />
+          <SnakeGame socket={socket} />
         </Card>
 
         <Card>
