@@ -1,7 +1,6 @@
-const express = require("express");
+const { checkPlayerCollision } = require("./snakeCollision");const express = require("express");
 const http = require("http");
 const { Server } = require("socket.io");
-
 const app = express();
 const server = http.createServer(app);
 
@@ -31,7 +30,6 @@ app.get("/health", (req, res) => {
 
 // 🔥 GAME STATE
 const GRID_SIZE = 20;
-
 const games = {
   "global-room": {
     players: {},
@@ -187,6 +185,14 @@ setInterval(() => {
     } else {
       player.snake = newSnake;
     }
+
+    const deaths = checkPlayerCollision(game.players);
+
+    Object.values(game.players).forEach(player => {
+      if (deaths[player.id]) {
+        player.alive = false;
+      }
+    });
   });
 
   io.to("global-room").emit("game-state", game);
